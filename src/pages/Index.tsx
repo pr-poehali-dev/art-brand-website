@@ -77,14 +77,17 @@ export default function Index() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-[#1A1F2C] via-[#221833] to-[#1A1F2C] relative">
       {/* Верхняя граница */}
-      <nav className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-primary/20">
+      <nav className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-primary/20 transition-all duration-500" style={{ transform: `translateY(${scrollY > 100 ? '0' : '-100%'})` }}>
         <div className="container mx-auto px-6 py-4 flex justify-center items-center gap-8">
-          {menuItems.slice(0, 3).map((item) => (
+          {menuItems.slice(0, 3).map((item, idx) => (
             <a 
               key={item} 
               href={`#${item.toLowerCase()}`} 
               onClick={(e) => scrollToSection(e, item.toLowerCase())}
-              className="text-sm md:text-base text-foreground/80 hover:text-primary transition-colors cursor-pointer whitespace-nowrap"
+              className="text-sm md:text-base text-foreground/80 hover:text-primary transition-all duration-300 cursor-pointer whitespace-nowrap hover:scale-110"
+              style={{ 
+                animation: scrollY > 100 ? `slideDown 0.5s ease-out ${idx * 0.1}s both` : 'none'
+              }}
             >
               {item}
             </a>
@@ -93,20 +96,23 @@ export default function Index() {
       </nav>
 
       {/* Левая граница */}
-      <div className="hidden lg:flex fixed left-0 top-1/2 -translate-y-1/2 z-50 flex-col gap-6 bg-background/80 backdrop-blur-md border-r border-primary/20 py-8 px-4">
-        <div className="text-xl font-bold bg-gradient-to-b from-primary via-secondary to-accent bg-clip-text text-transparent [writing-mode:vertical-lr] rotate-180">
+      <div className="hidden lg:flex fixed left-0 top-1/2 -translate-y-1/2 z-50 flex-col gap-6 bg-background/80 backdrop-blur-md border-r border-primary/20 py-8 px-4 transition-all duration-700" style={{ transform: `translateX(${scrollY > 200 ? '0' : '-100%'}) translateY(-50%)` }}>
+        <div className="text-xl font-bold bg-gradient-to-b from-primary via-secondary to-accent bg-clip-text text-transparent [writing-mode:vertical-lr] rotate-180 hover:scale-105 transition-transform duration-300">
           KONSTANTIN Z
         </div>
       </div>
 
       {/* Правая граница */}
-      <div className="hidden lg:flex fixed right-0 top-1/2 -translate-y-1/2 z-50 flex-col gap-4 bg-background/80 backdrop-blur-md border-l border-primary/20 py-6 px-4">
-        {['Instagram', 'Facebook', 'Telegram'].map((social) => (
+      <div className="hidden lg:flex fixed right-0 top-1/2 -translate-y-1/2 z-50 flex-col gap-4 bg-background/80 backdrop-blur-md border-l border-primary/20 py-6 px-4 transition-all duration-700" style={{ transform: `translateX(${scrollY > 200 ? '0' : '100%'}) translateY(-50%)` }}>
+        {['Instagram', 'Facebook', 'Telegram'].map((social, idx) => (
           <a 
             key={social}
             href="#контакты"
             onClick={(e) => scrollToSection(e, 'контакты')}
-            className="text-foreground/60 hover:text-primary transition-colors [writing-mode:vertical-lr] rotate-180 text-sm"
+            className="text-foreground/60 hover:text-primary transition-all duration-300 [writing-mode:vertical-lr] rotate-180 text-sm hover:scale-110"
+            style={{ 
+              animation: scrollY > 200 ? `fadeIn 0.5s ease-out ${idx * 0.15}s both` : 'none'
+            }}
           >
             {social}
           </a>
@@ -114,14 +120,17 @@ export default function Index() {
       </div>
 
       {/* Нижняя граница */}
-      <div className="hidden md:flex fixed bottom-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-t border-primary/20">
+      <div className="hidden md:flex fixed bottom-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-t border-primary/20 transition-all duration-500" style={{ transform: `translateY(${scrollY > 300 ? '0' : '100%'})` }}>
         <div className="container mx-auto px-6 py-4 flex justify-center items-center gap-8">
-          {menuItems.slice(3, 6).map((item) => (
+          {menuItems.slice(3, 6).map((item, idx) => (
             <a 
               key={item} 
               href={`#${item.toLowerCase()}`} 
               onClick={(e) => scrollToSection(e, item.toLowerCase())}
-              className="text-sm md:text-base text-foreground/80 hover:text-primary transition-colors cursor-pointer whitespace-nowrap"
+              className="text-sm md:text-base text-foreground/80 hover:text-primary transition-all duration-300 cursor-pointer whitespace-nowrap hover:scale-110"
+              style={{ 
+                animation: scrollY > 300 ? `slideUp 0.5s ease-out ${idx * 0.1}s both` : 'none'
+              }}
             >
               {item}
             </a>

@@ -75,7 +75,7 @@ export default function Index() {
   const menuItems = ['Портфолио', 'О художнике', 'Заказать', 'Мастер-классы', 'Блог', 'Контакты'];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#E8D4A0] via-[#D9C89E] to-[#C9B896] relative frame-border canvas-texture">
+    <div className="min-h-screen bg-gradient-to-br from-[#5C4033] via-[#7D5A4F] to-[#8B5A3C] relative frame-border canvas-texture">
       {/* Верхняя граница */}
       <nav className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-primary/20 transition-all duration-500" style={{ transform: `translateY(${scrollY > 100 ? '0' : '-100%'})` }}>
         <div className="container mx-auto px-6 py-4 flex justify-center items-center gap-8">

@@ -13,6 +13,7 @@ export default function Index() {
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [orderForm, setOrderForm] = useState({ name: '', email: '', description: '', size: '40x50', material: 'холст' });
   const [price, setPrice] = useState(0);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => setScrollY(window.scrollY);
@@ -67,6 +68,7 @@ export default function Index() {
         top: elementPosition - navHeight,
         behavior: 'smooth'
       });
+      setMobileMenuOpen(false);
     }
   };
 
@@ -89,9 +91,32 @@ export default function Index() {
               </a>
             ))}
           </div>
-          <Button variant="outline" className="md:hidden">
-            <Icon name="Menu" size={24} />
+          <Button 
+            variant="outline" 
+            className="md:hidden"
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+          >
+            <Icon name={mobileMenuOpen ? "X" : "Menu"} size={24} />
           </Button>
+        </div>
+
+        <div 
+          className={`md:hidden fixed top-[73px] left-0 right-0 bg-background/95 backdrop-blur-md border-b border-primary/20 transition-all duration-300 overflow-hidden ${
+            mobileMenuOpen ? 'max-h-[400px] opacity-100' : 'max-h-0 opacity-0'
+          }`}
+        >
+          <div className="container mx-auto px-6 py-6 flex flex-col gap-4">
+            {['Портфолио', 'О художнике', 'Заказать', 'Мастер-классы', 'Блог', 'Контакты'].map((item) => (
+              <a 
+                key={item} 
+                href={`#${item.toLowerCase()}`}
+                onClick={(e) => scrollToSection(e, item.toLowerCase())}
+                className="text-lg text-foreground/80 hover:text-primary transition-colors py-2 border-b border-primary/10"
+              >
+                {item}
+              </a>
+            ))}
+          </div>
         </div>
       </nav>
 

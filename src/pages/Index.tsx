@@ -72,53 +72,90 @@ export default function Index() {
     }
   };
 
-  return (
-    <div className="min-h-screen bg-gradient-to-br from-[#1A1F2C] via-[#221833] to-[#1A1F2C]">
-      <nav className="fixed top-0 w-full z-50 bg-background/80 backdrop-blur-md border-b border-primary/20">
-        <div className="container mx-auto px-6 py-4 flex justify-between items-center">
-          <div className="text-3xl font-bold bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent">
-            KONSTANTIN Z
-          </div>
-          <div className="hidden md:flex gap-8">
-            {['Портфолио', 'О художнике', 'Заказать', 'Мастер-классы', 'Блог', 'Контакты'].map((item) => (
-              <a 
-                key={item} 
-                href={`#${item.toLowerCase()}`} 
-                onClick={(e) => scrollToSection(e, item.toLowerCase())}
-                className="text-foreground/80 hover:text-primary transition-colors cursor-pointer"
-              >
-                {item}
-              </a>
-            ))}
-          </div>
-          <Button 
-            variant="outline" 
-            className="md:hidden"
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          >
-            <Icon name={mobileMenuOpen ? "X" : "Menu"} size={24} />
-          </Button>
-        </div>
+  const menuItems = ['Портфолио', 'О художнике', 'Заказать', 'Мастер-классы', 'Блог', 'Контакты'];
 
-        <div 
-          className={`md:hidden fixed top-[73px] left-0 right-0 bg-background/95 backdrop-blur-md border-b border-primary/20 transition-all duration-300 overflow-hidden ${
-            mobileMenuOpen ? 'max-h-[400px] opacity-100' : 'max-h-0 opacity-0'
-          }`}
-        >
-          <div className="container mx-auto px-6 py-6 flex flex-col gap-4">
-            {['Портфолио', 'О художнике', 'Заказать', 'Мастер-классы', 'Блог', 'Контакты'].map((item) => (
-              <a 
-                key={item} 
-                href={`#${item.toLowerCase()}`}
-                onClick={(e) => scrollToSection(e, item.toLowerCase())}
-                className="text-lg text-foreground/80 hover:text-primary transition-colors py-2 border-b border-primary/10"
-              >
-                {item}
-              </a>
-            ))}
-          </div>
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-[#1A1F2C] via-[#221833] to-[#1A1F2C] relative">
+      {/* Верхняя граница */}
+      <nav className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-primary/20">
+        <div className="container mx-auto px-6 py-4 flex justify-center items-center gap-8">
+          {menuItems.slice(0, 3).map((item) => (
+            <a 
+              key={item} 
+              href={`#${item.toLowerCase()}`} 
+              onClick={(e) => scrollToSection(e, item.toLowerCase())}
+              className="text-sm md:text-base text-foreground/80 hover:text-primary transition-colors cursor-pointer whitespace-nowrap"
+            >
+              {item}
+            </a>
+          ))}
         </div>
       </nav>
+
+      {/* Левая граница */}
+      <div className="hidden lg:flex fixed left-0 top-1/2 -translate-y-1/2 z-50 flex-col gap-6 bg-background/80 backdrop-blur-md border-r border-primary/20 py-8 px-4">
+        <div className="text-xl font-bold bg-gradient-to-b from-primary via-secondary to-accent bg-clip-text text-transparent [writing-mode:vertical-lr] rotate-180">
+          KONSTANTIN Z
+        </div>
+      </div>
+
+      {/* Правая граница */}
+      <div className="hidden lg:flex fixed right-0 top-1/2 -translate-y-1/2 z-50 flex-col gap-4 bg-background/80 backdrop-blur-md border-l border-primary/20 py-6 px-4">
+        {['Instagram', 'Facebook', 'Telegram'].map((social) => (
+          <a 
+            key={social}
+            href="#контакты"
+            onClick={(e) => scrollToSection(e, 'контакты')}
+            className="text-foreground/60 hover:text-primary transition-colors [writing-mode:vertical-lr] rotate-180 text-sm"
+          >
+            {social}
+          </a>
+        ))}
+      </div>
+
+      {/* Нижняя граница */}
+      <div className="hidden md:flex fixed bottom-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-t border-primary/20">
+        <div className="container mx-auto px-6 py-4 flex justify-center items-center gap-8">
+          {menuItems.slice(3, 6).map((item) => (
+            <a 
+              key={item} 
+              href={`#${item.toLowerCase()}`} 
+              onClick={(e) => scrollToSection(e, item.toLowerCase())}
+              className="text-sm md:text-base text-foreground/80 hover:text-primary transition-colors cursor-pointer whitespace-nowrap"
+            >
+              {item}
+            </a>
+          ))}
+        </div>
+      </div>
+
+      {/* Мобильное меню */}
+      <Button 
+        variant="outline" 
+        className="lg:hidden fixed top-4 right-4 z-50"
+        onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+      >
+        <Icon name={mobileMenuOpen ? "X" : "Menu"} size={24} />
+      </Button>
+      
+      <div 
+        className={`lg:hidden fixed top-0 left-0 right-0 bottom-0 bg-background/95 backdrop-blur-md z-40 transition-all duration-300 ${
+          mobileMenuOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
+        }`}
+      >
+        <div className="flex flex-col items-center justify-center h-full gap-6">
+          {menuItems.map((item) => (
+            <a 
+              key={item} 
+              href={`#${item.toLowerCase()}`}
+              onClick={(e) => scrollToSection(e, item.toLowerCase())}
+              className="text-2xl text-foreground/80 hover:text-primary transition-colors"
+            >
+              {item}
+            </a>
+          ))}
+        </div>
+      </div>
 
       <section className="min-h-screen flex items-center justify-center relative overflow-hidden pt-20">
         <div

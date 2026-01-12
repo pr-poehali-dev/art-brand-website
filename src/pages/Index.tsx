@@ -77,7 +77,7 @@ export default function Index() {
       <nav className="fixed top-0 w-full z-50 bg-background/80 backdrop-blur-md border-b border-primary/20">
         <div className="container mx-auto px-6 py-4 flex justify-between items-center">
           <div className="text-3xl font-bold bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent">
-            KONSTANTINA Z
+            KONSTANTIN Z
           </div>
           <div className="hidden md:flex gap-8">
             {['Портфолио', 'О художнике', 'Заказать', 'Мастер-классы', 'Блог', 'Контакты'].map((item) => (
@@ -522,7 +522,7 @@ export default function Index() {
           <div className="grid md:grid-cols-3 gap-8 mb-8">
             <div>
               <h3 className="text-2xl font-bold mb-4 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
-                KONSTANTINA Z
+                KONSTANTIN Z
               </h3>
               <p className="text-foreground/60">Искусство, которое живёт</p>
             </div>
@@ -550,7 +550,7 @@ export default function Index() {
             </div>
           </div>
           <div className="pt-8 border-t border-primary/20 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-foreground/60">
-            <p>© 2024 KONSTANTINA Z. Все права защищены.</p>
+            <p>© 2024 KONSTANTIN Z. Все права защищены.</p>
             <div className="flex gap-6">
               <a href="#" className="hover:text-primary transition-colors">Политика конфиденциальности</a>
               <a href="#" className="hover:text-primary transition-colors">Условия использования</a>

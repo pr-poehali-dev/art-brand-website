@@ -57,6 +57,19 @@ export default function Index() {
 
   const filteredArtworks = selectedCategory === 'all' ? artworks : artworks.filter(a => a.category === selectedCategory);
 
+  const scrollToSection = (e: React.MouseEvent<HTMLAnchorElement>, sectionId: string) => {
+    e.preventDefault();
+    const element = document.getElementById(sectionId);
+    if (element) {
+      const navHeight = 80;
+      const elementPosition = element.getBoundingClientRect().top + window.scrollY;
+      window.scrollTo({
+        top: elementPosition - navHeight,
+        behavior: 'smooth'
+      });
+    }
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-[#1A1F2C] via-[#221833] to-[#1A1F2C]">
       <nav className="fixed top-0 w-full z-50 bg-background/80 backdrop-blur-md border-b border-primary/20">
@@ -66,7 +79,12 @@ export default function Index() {
           </div>
           <div className="hidden md:flex gap-8">
             {['Портфолио', 'О художнике', 'Заказать', 'Мастер-классы', 'Блог', 'Контакты'].map((item) => (
-              <a key={item} href={`#${item.toLowerCase()}`} className="text-foreground/80 hover:text-primary transition-colors">
+              <a 
+                key={item} 
+                href={`#${item.toLowerCase()}`} 
+                onClick={(e) => scrollToSection(e, item.toLowerCase())}
+                className="text-foreground/80 hover:text-primary transition-colors cursor-pointer"
+              >
                 {item}
               </a>
             ))}
